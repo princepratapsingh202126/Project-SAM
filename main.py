@@ -70,7 +70,27 @@ class Sam():
                 Sam.say("I win!")
             Sam.say("Wanna play again? : ")
             again = input("yes/no :").lower()
-            yes = [ 'yes',"yups","yeah" ]
+            yes = [ 'yes',"yups","yeah","y" ]
+            if any(element in again for element in yes):
+                continue
+            else:
+                Sam.say("Exiting Game.")
+                break
+
+    def gtn_game():
+        numc = random.choice('1','2','3','4','5','6','7','8','9','10')
+        Sam.say("Choose a Integer between 1 to 10")
+        while True:
+            num = input()
+            if num > numc :
+                Sam.say("A little less.")
+            elif num < numc:
+                Sam.say("A lttle more.")
+            else:
+                Sam.say("Hurray! You got it.")
+            Sam.say("Wanna play again? : ")
+            again = input("yes/no :").lower()
+            yes = [ 'yes',"yups","yeah","y" ]
             if any(element in again for element in yes):
                 continue
             else:
@@ -96,7 +116,7 @@ class Process():
             if game == "1":
                 Sam.rps_game()
             elif game == "2":
-                Sam.say("This is not available yet.")
+                Sam.gtn_game()
             else:
                 Sam.say("Invalid Choice")
         else:
@@ -107,4 +127,5 @@ while True:
     while not message_queue.empty():
         msg = message_queue.get()
         Sam.say(msg)
+
     Process.take_command()
